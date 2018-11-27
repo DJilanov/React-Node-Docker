@@ -1,12 +1,11 @@
 const debug = require('debug')('server:server');
 const http = require('http');
-const env = require('dotenv').config(); // eslint-disable-line
 const config = require('./config');
 
 (async () => {
   try {
-    const dbContext = await require('./../data/db/db-context').init(config.database);
-    const repository = await require('./../data/repository').init(dbContext);
+    await require('./../data/db/db-context').init(config.database);
+    const repository = await require('./../data/repository').init();
     const app = await require('./config/express').init(repository);
     const port = parseInt(config.api.port, 10);
 

@@ -1,7 +1,5 @@
 const defaultState = {
-  visible: false,
-  currentMessageId: 0,
-  currentText: ''
+  visible: false
 }
 
 const form = (state = defaultState, action) => {

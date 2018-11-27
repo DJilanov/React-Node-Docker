@@ -1,13 +1,13 @@
-# Pixelgram
+# Messenger
 
-Pixelgram is an image sharing service.
+Sample project based on
+NodeJS + Express and MongoDB + Mongoose
 
 ## Table of contents
 
-- [Pixelgram](#pixelgram)
+- [Messenger](#Messenger)
   - [Table of contents](#table-of-contents)
   - [Stack](#stack)
-  - [Screenshots](#screenshots)
   - [Setup](#setup)
     - [Clone the repository](#clone-the-repository)
     - [Build and run](#build-and-run)
@@ -17,15 +17,11 @@ Pixelgram is an image sharing service.
 
 ## Stack
 
-- Angular front end
+- React front end
 - Express back end
 - MongoDB database
 - NGINX
 - Docker
-
-## Screenshots
-
-Screenshots are available in the [`screenshots`](screenshots) directory.
 
 ## Setup
 
@@ -34,8 +30,8 @@ Screenshots are available in the [`screenshots`](screenshots) directory.
 Clone the repository to your filesystem
 
 ```
-$ git clone git@github.com:robbdimitrov/pixelgram.git
-$ cd pixelgram
+$ git clone https://github.com/DJilanov/react-node-docker.git
+$ cd react-node-docker
 ```
 
 ### Build and run

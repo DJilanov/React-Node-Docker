@@ -1,5 +1,9 @@
 const messages = (state = [], action) => {
   switch (action.type) {
+    case 'FETCH_MESSAGES':
+      return state
+    case 'SET_MESSAGES':
+      return action.messages
     case 'ADD_MESSAGE':
       return [
         ...state,

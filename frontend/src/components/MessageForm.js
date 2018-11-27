@@ -33,7 +33,6 @@ const MessageForm = ({ visible, addMessage, toggleAddForm }) => {
 
 MessageForm.propTypes = {
   visible: PropTypes.bool.isRequired,
-  currentText: PropTypes.string.isRequired,
   addMessage: PropTypes.func.isRequired,
   toggleAddForm: PropTypes.func.isRequired
 }

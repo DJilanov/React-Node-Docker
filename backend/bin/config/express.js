@@ -5,12 +5,10 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
-
 const init = async (repository) => {
-  const fiatFxController = require('../../routes/fiat-fx/fiat-fx-controller')(repository);
-
   const app = express();
 
+  // Cors
   app.use(cors());
 
   // Logger
@@ -25,21 +23,8 @@ const init = async (repository) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
 
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Access-Control-*, Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
-  
-  // Crons
-  syncerService.createCronJob(fiatFxController.sync, { minute: 0 }); // sync every hour
-  syncerService.createCronJob(etherController.sync, { minute: 10 }); // sync every hour
-
   // Routers
-  require('./../../routes/syncer/sync-router').attachTo(app, repository);
-  require('./../../routes/ether/ether-router').attachTo(app, repository);
-  require('./../../routes/fiat-fx/fiat-fx-router').attachTo(app, repository);
+  require('./../../routes/messages/messages-router').attachTo(app, repository);
 
   // Errors handlers
   // catch 404 and forward to error handler

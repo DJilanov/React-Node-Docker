@@ -1,47 +1,26 @@
-# CryptoBeast - Data syncer
+# Redux Messenger Backend
+Sample project based on
+NodeJS + Express and MongoDB + Mongoose
 
-# SQLite with Sequelize
+## Available Scripts
 
-## Project setup
+In the project directory, you can run:
 
-# Database
-Download & install PostgreSQL version 10.3 from https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+### `npm run start`
 
-copy `/api/config/db.example.js` to `/api/config/example.js` and set yout db credentials
+Runs the app into develop mode. The port which it uses is 3200
 
-## Commands to use
-* To start the project:
-``` bash
-npm start
-```
+TODO: Add swagger docs
 
-* To use the Electron debug tool
-execute the following from the Console tab of your running Electron app's developer tools:
-``` javascript
-require('devtron').install();
-```
+### `npm run debug`
 
+Runs the app in the debug mode.<br>
+Open Chrome://inspect and load the debugger there
 
-You should then see a Devtron tab added.
+### `npm run lint`
 
+Runs linting script and checks the code for errors
 
-## Documentations
-* React - Front-end
-    - [repository description](https://github.com/facebook/create-react-app)
+### `npm run test`
 
-* Material-UI Design - Template for React
-    - [documentation - based on](https://material-ui-next.com/)
-    - [documentation](https://creativetimofficial.github.io/material-dashboard-react/#/documentation/tutorial)
-    - [repository description](https://github.com/creativetimofficial/material-dashboard-react)
-
-* Electron
-    - [repository description](https://github.com/electron/electron)
-
-* Express - Back-end REST API
-    - [repository description](https://github.com/expressjs/express)
-
-* SQLite3 - file based SQL
-    - [repository description](https://github.com/mapbox/node-sqlite3)
-
-* Sequelize - ORM
-    - [repository description](https://github.com/sequelize/sequelize)
+Runs all of the BE tests from the tests folder

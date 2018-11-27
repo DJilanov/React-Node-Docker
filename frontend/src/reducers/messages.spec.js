@@ -17,7 +17,8 @@ describe('inbox reducer', () => {
     ).toEqual([
       {
         text: 'Run the tests',
-        completed: false,
+        deleted: false,
+        editMode: false,
         id: 0
       }
     ])
@@ -26,22 +27,26 @@ describe('inbox reducer', () => {
       messages([
         {
           text: 'Run the tests',
-          completed: false,
+          deleted: false,
+          editMode: false,
           id: 0
         }
       ], {
         type: 'ADD_MESSAGE',
         text: 'Use Redux',
+        editMode: false,
         id: 1
       })
     ).toEqual([
       {
         text: 'Run the tests',
-        completed: false,
+        deleted: false,
+        editMode: false,
         id: 0
       }, {
         text: 'Use Redux',
-        completed: false,
+        deleted: false,
+        editMode: false,
         id: 1
       }
     ])
@@ -50,11 +55,13 @@ describe('inbox reducer', () => {
       messages([
         {
           text: 'Run the tests',
-          completed: false,
+          deleted: false,
+          editMode: false,
           id: 0
         }, {
           text: 'Use Redux',
-          completed: false,
+          deleted: false,
+          editMode: false,
           id: 1
         }
       ], {
@@ -65,47 +72,120 @@ describe('inbox reducer', () => {
     ).toEqual([
       {
         text: 'Run the tests',
-        completed: false,
+        deleted: false,
+        editMode: false,
         id: 0
       }, {
         text: 'Use Redux',
-        completed: false,
+        deleted: false,
+        editMode: false,
         id: 1
       }, {
         text: 'Fix the tests',
-        completed: false,
+        deleted: false,
+        editMode: false,
         id: 2
       }
     ])
   })
 
-  it('should handle TOGGLE_MESSAGE', () => {
+  it('should handle DELETE_MESSAGE', () => {
     expect(
       messages([
         {
           text: 'Run the tests',
-          completed: false,
+          deleted: false,
+          editMode: false,
           id: 1
         }, {
           text: 'Use Redux',
-          completed: false,
+          deleted: false,
+          editMode: false,
           id: 0
         }
       ], {
-        type: 'TOGGLE_MESSAGE',
+        type: 'DELETE_MESSAGE',
         id: 1
       })
     ).toEqual([
       {
         text: 'Run the tests',
-        completed: true,
+        deleted: true,
+        editMode: false,
         id: 1
       }, {
         text: 'Use Redux',
-        completed: false,
+        deleted: false,
+        editMode: false,
         id: 0
       }
     ])
   })
 
+  it('should handle TOGGLE_EDIT_MESSAGE', () => {
+    expect(
+      messages([
+        {
+          text: 'Run the tests',
+          deleted: false,
+          editMode: false,
+          id: 1
+        }, {
+          text: 'Use Redux',
+          deleted: false,
+          editMode: false,
+          id: 0
+        }
+      ], {
+        type: 'TOGGLE_EDIT_MESSAGE',
+        id: 1,
+      })
+    ).toEqual([
+      {
+        text: 'Run the tests',
+        deleted: false,
+        editMode: true,
+        id: 1
+      }, {
+        text: 'Use Redux',
+        deleted: false,
+        editMode: false,
+        id: 0
+      }
+    ])
+  })
+
+  it('should handle SAVE_MESSAGE_CHANGES', () => {
+    expect(
+      messages([
+        {
+          text: 'Run the tests',
+          deleted: false,
+          editMode: false,
+          id: 1
+        }, {
+          text: 'Use Redux',
+          deleted: false,
+          editMode: false,
+          id: 0
+        }
+      ], {
+        type: 'SAVE_MESSAGE_CHANGES',
+        id: 1,
+        text: 'Dont use redux'
+      })
+    ).toEqual([
+      {
+        text: 'Dont use redux',
+        deleted: false,
+        editMode: true,
+        id: 1
+      }, {
+        text: 'Use Redux',
+        deleted: false,
+        editMode: false,
+        id: 0
+      }
+    ])
+  })
 })

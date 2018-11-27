@@ -1,4 +1,23 @@
 let nextMessageId = 0
+// TODO: Move it to enviroment variables
+const messagesUrl = `https://www.reddit.com/r/test.json`
+
+export const fetchMessages = () => {
+  return dispatch => {
+    dispatch({
+      type: 'FETCH_MESSAGES'
+    })
+    return fetch(messagesUrl)
+      .then(response => response.json())
+      .then(json => dispatch(setMessages(json)))
+  }
+}
+
+export const setMessages = (messages) => ({
+  type: 'SET_MESSAGES',
+  messages: messages
+})
+
 export const addMessage = text => ({
   type: 'ADD_MESSAGE',
   id: nextMessageId++,

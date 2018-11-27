@@ -1,57 +1,26 @@
-const init = (db) => {
+// Add all of the used models to the db
+const db = {
+  'Message': require('./db/models/message')
+};
+
+const init = () => {
   const create = request =>
     db[request.modelName].create(request.newObject);
 
-  const createMany = request =>
-    db[request.modelName].bulkCreate(request.newObjects);
-
-  const findById = request =>
-    db[request.modelName].findById(request.id);
-
   const find = request =>
-    db[request.modelName].findAll(request.options);
-
-  const findOne = request =>
-    db[request.modelName].findOne(request.options);
+    db[request.modelName].find(request.options);
 
   const update = request =>
-    db[request.modelName].update(
-      request.updatedRecord,
-      { where: { id: request.updatedRecord.id } },
-    );
-
-  const updateMany = request =>
-    db[request.modelName].update(
-      request.updatedRecord,
-      request.options,
-    );
+    db[request.modelName].save(request.updatedRecord);
 
   const remove = request =>
-    db[request.modelName].destroy({
-      where: { id: request.id },
-    });
-
-  const removeAll = request =>
-    db[request.modelName].destroy({
-      where: request.options || {},
-    });
-
-  const rawQuery = request =>
-    db.sequelize.query(request.query, {
-      type: db.sequelize.QueryTypes.SELECT,
-    });
+    db[request.modelName].remove({ _id: request._id })
 
   return {
     create,
-    createMany,
-    findById,
     find,
-    findOne,
     update,
-    updateMany,
-    remove,
-    removeAll,
-    rawQuery,
+    remove
   };
 };
 
