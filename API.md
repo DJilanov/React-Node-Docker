@@ -104,6 +104,7 @@ Response:
 ```
 {
     "deleted": false,
+    "text": "message1",
     "_id": "4ffcf580-f1b6-11e8-9dd2-0b28eeec7d71",
     "__v": 0
 }
@@ -131,6 +132,7 @@ Response:
 ```
 {
     "deleted": true,
+    "text": "message1",
     "_id": "4ffcf580-f1b6-11e8-9dd2-0b28eeec7d71",
     "__v": 0
 }
