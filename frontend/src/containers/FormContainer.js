@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addMessage, toggleAddForm } from '../actions'
+import { createMessage, toggleAddForm } from '../actions'
 import MessageForm from '../components/MessageForm'
 
 const mapStateToProps = state => {
@@ -10,10 +10,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addMessage: (value) => {
-    dispatch(addMessage(value))
-    dispatch(toggleAddForm())
-  },
+  addMessage: (value) => dispatch(createMessage(value)),
   toggleAddForm: () => dispatch(toggleAddForm()),
 })
 

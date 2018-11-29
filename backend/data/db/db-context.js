@@ -14,7 +14,7 @@ const connectDb = (databaseConfig, resolve) => {
   // When the connection is disconnected try to reconnect manually
   mongoose.connection.on('disconnected', () => {
     console.log('[dbConnector]Mongoose default connection disconnected');
-    mongoose.connect(databaseConfig.dbAddress, { server: { auto_reconnect: true } });
+    mongoose.connect(databaseConfig.dbAddress, { useNewUrlParser: true });
   });
 
   // If the Node process ends, close the Mongoose connection
@@ -25,7 +25,7 @@ const connectDb = (databaseConfig, resolve) => {
     });
   });
   // get database
-  mongoose.connect(databaseConfig.dbAddress, { server: { auto_reconnect: true } },(err) => {
+  mongoose.connect(databaseConfig.dbAddress, { useNewUrlParser: true } ,(err) => {
     // if we failed to connect, abort
     if (err) {
       throw err;

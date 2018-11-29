@@ -1,35 +1,41 @@
 const messages = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_MESSAGES':
+    case 'CREATE_MESSAGE':
+    case 'EDIT_MESSAGE':
+      // TODO: Add loading handler 
       return state
     case 'SET_MESSAGES':
-      return action.messages
+      return action.messages.map(message => {
+        message.editMode = false
+        return message
+      });
     case 'ADD_MESSAGE':
       return [
         ...state,
         {
-          id: action.id,
-          text: action.text,
-          deleted: false,
+          _id: action.message._id,
+          text: action.message.text,
+          deleted: action.message.deleted,
           editMode: false
         }
       ]
     case 'TOGGLE_EDIT_MESSAGE':
       return state.map(message =>
-        (message.id === action.id)
+        (message._id === action._id)
           ? {...message, editMode: !message.editMode}
           : message
       )
-    case 'SAVE_MESSAGE_CHANGES':
+    case 'UPDATE_MESSAGE':
       return state.map(message =>
-        (message.id === action.id)
-          ? {...message, text: action.text, editMode: !message.editMode}
+        (message._id === action.message._id)
+          ? {...action.message}
           : message
       )
     case 'DELETE_MESSAGE':
       return state.map(message =>
-        (message.id === action.id)
-          ? {...message, deleted: !message.deleted}
+        (message._id === action._id)
+          ? {...action.message}
           : message
       )
     default:

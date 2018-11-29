@@ -5,7 +5,7 @@ const controllButtonStyle = {
   marginLeft: '50px'
 };
 
-const Message = ({ onDeleteClick, toggleEditMode, onSaveChanges, deleted, text, editMode }) => {
+const Message = ({ onDeleteClick, toggleEditMode, onSaveClick, deleted, text, editMode }) => {
   let input
 
   return (
@@ -23,7 +23,7 @@ const Message = ({ onDeleteClick, toggleEditMode, onSaveChanges, deleted, text, 
         { editMode ? (
           <span>
             <button
-              onClick={() => onSaveChanges(input.value)}
+              onClick={() => onSaveClick(input.value)}
               style={controllButtonStyle}
             >save</button>
             <button
@@ -50,7 +50,7 @@ const Message = ({ onDeleteClick, toggleEditMode, onSaveChanges, deleted, text, 
 
 Message.propTypes = {
   onDeleteClick: PropTypes.func.isRequired,
-  onSaveChanges: PropTypes.func.isRequired,
+  onSaveClick: PropTypes.func.isRequired,
   toggleEditMode: PropTypes.func.isRequired,
   deleted: PropTypes.bool.isRequired,
   editMode: PropTypes.bool.isRequired,

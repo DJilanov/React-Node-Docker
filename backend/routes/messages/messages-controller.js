@@ -2,8 +2,12 @@ const modelName = 'Message';
 
 const messageController = (repository) => {
   const createMessage = async (req, res) => {
-    const { messageData } = req.params;
+    // TODO: Add validation of the data
+    const messageData = req.body;
     return repository.create({ modelName, newObject: messageData })
+      .then((response) => {
+        res.status(200).send(response._doc);
+      })
       .catch(error => console.log(error));
   };
 
@@ -20,6 +24,7 @@ const messageController = (repository) => {
   };
 
   const getMessages = async (req, res) => {
+    console.log('get messages');
     return repository.find({ modelName })
       .then((response) => {
         res.status(200).send(response);

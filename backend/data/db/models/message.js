@@ -6,7 +6,7 @@ module.exports = mongoose.model(
   {
     _id: { 
       type: String, 
-      default: uuid.v1()
+      default: uuid.v4
     },
     text: {
       type: String

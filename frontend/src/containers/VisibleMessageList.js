@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleEditMode, deleteMessage, VisibilityFilters, onSaveChanges } from '../actions'
+import { toggleEditMode, editMessage, deleteMessage, VisibilityFilters } from '../actions'
 import MessageList from '../components/MessageList'
 
 const getVisibleTodos = (messages, filter) => {
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteMessage: id => dispatch(deleteMessage(id)),
   toggleEditMode: id => dispatch(toggleEditMode(id)),
-  onSaveChanges: (id, text) => dispatch(onSaveChanges(id, text)),
+  onSaveClick: (id, text) => dispatch(editMessage(id, text)),
 })
 
 export default connect(

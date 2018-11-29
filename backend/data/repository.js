@@ -4,7 +4,7 @@ const db = {
 };
 
 const init = () => {
-  const create = request =>
+  const create = request => 
     db[request.modelName].create(request.newObject);
 
   const find = request =>

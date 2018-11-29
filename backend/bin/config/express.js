@@ -19,8 +19,8 @@ const init = async (repository) => {
   // static folder for testing
   // app.use('/static', express.static(path.join(__dirname, '..', '..', '..', 'client/build')));
 
-  app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.json());
   app.use(cookieParser());
 
   // Routers
