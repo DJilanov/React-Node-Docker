@@ -29,13 +29,13 @@ const messages = (state = [], action) => {
     case 'UPDATE_MESSAGE':
       return state.map(message =>
         (message._id === action.message._id)
-          ? {...action.message}
+          ? {...action.message, editMode: false}
           : message
       )
     case 'DELETE_MESSAGE':
       return state.map(message =>
         (message._id === action._id)
-          ? {...action.message}
+          ? {...action.message, editMode: false}
           : message
       )
     default:

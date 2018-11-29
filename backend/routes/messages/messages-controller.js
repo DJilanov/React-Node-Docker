@@ -6,28 +6,52 @@ const messageController = (repository) => {
     const messageData = req.body;
     return repository.create({ modelName, newObject: messageData })
       .then((response) => {
-        res.status(200).send(response._doc);
+        if(response.ok) {
+          res.status(200).send(response._doc);
+        } else {
+          res.status(500).send(response);
+        }
       })
       .catch(error => console.log(error));
   };
 
   const editMessage = async (req, res) => {
-    const { messageData } = req.params;
-    return repository.create({ modelName, newObject: messageData })
+    // TODO: Add validation of the data
+    const messageData = req.body;
+    console.log('messageData: ', messageData)
+    return repository.update({ modelName, updatedRecord: messageData })
+      .then((response) => {
+        if(response.ok !== 0) {
+          res.status(200).send(response._doc);
+        } else {
+          res.status(500).send(response);
+        }
+      })
       .catch(error => console.log(error));
   };
 
   const deleteMessage = async (req, res) => {
-    const { messageData } = req.params;
-    return repository.create({ modelName, newObject: messageData })
+    // TODO: Add validation of the data
+    const messageData = req.body;
+    return repository.update({ modelName, updatedRecord: messageData })
+      .then((response) => {
+        if(response.ok !== 0) {
+          res.status(200).send(response._doc);
+        } else {
+          res.status(500).send(response);
+        }
+      })
       .catch(error => console.log(error));
   };
 
   const getMessages = async (req, res) => {
-    console.log('get messages');
     return repository.find({ modelName })
       .then((response) => {
-        res.status(200).send(response);
+        if(response.ok !== 0) {
+          res.status(200).send(response);
+        } else {
+          res.status(500).send(response);
+        }
       })
       .catch(error => console.log(error));
   };

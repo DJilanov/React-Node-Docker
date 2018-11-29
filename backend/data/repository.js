@@ -10,8 +10,22 @@ const init = () => {
   const find = request =>
     db[request.modelName].find(request.options);
 
-  const update = request =>
-    db[request.modelName].save(request.updatedRecord);
+  const update = request => {
+    // Remove the ID from the requester as soemthign we must not update
+    let keys = Object.keys(request.updatedRecord).filter(key => key !== '_id');
+    let setter = {};
+    for(let counter = 0; counter < keys.length; counter++) {
+      setter[keys[counter]] = request.updatedRecord[keys[counter]]
+    }
+    return db[request.modelName].findOneAndUpdate(
+      request.updatedRecord._id, { 
+        $set: setter
+      }, {
+        new: true,
+        returnOriginal: false
+      }
+    );
+  }
 
   const remove = request =>
     db[request.modelName].remove({ _id: request._id })

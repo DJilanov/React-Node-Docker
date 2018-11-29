@@ -2,15 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Message from './Message'
 
-const MessageList = ({ messages, toggleEditMode, editMessage, deleteMessage }) => (
+const MessageList = ({ messages, toggleEditMode, onSaveClick, deleteMessage }) => (
   <ul>
     {messages.map(message =>
       <Message
         key={message._id}
         {...message}
         toggleEditMode={() => toggleEditMode(message._id)}
-        onDeleteClick={() => deleteMessage(message._id)}
-        onSaveClick={(text) => editMessage(message._id, text)}
+        onDeleteClick={() => deleteMessage(message)}
+        onSaveClick={(text) => onSaveClick(text, message)}
       />
     )}
   </ul>

@@ -48,13 +48,18 @@ export const addMessage = message => ({
   message
 })
 
-export const editMessage = (message) => {
+export const editMessage = (text, message) => {
+  message.text = text;
   return dispatch => {
     dispatch({
       type: 'EDIT_MESSAGE'
     })
     return fetch(apiUrl + 'message', {
       method: "PATCH",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(message)
     })
       .then(response => response.json())
@@ -69,7 +74,14 @@ export const deleteMessage = (message) => {
     })
     return fetch(apiUrl + 'message', {
       method: "DELETE",
-      body: JSON.stringify(message)
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        _id: message._id,
+        deleted: !message.deleted
+      })
     })
       .then(response => response.json())
       .then(json => dispatch(updateMessage(json)))
