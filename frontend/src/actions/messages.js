@@ -1,11 +1,11 @@
-import { config } from '../config/config';
-
+/* global fetch:false */
+import { config } from '../config/config'
 const apiUrl = config.API_URL
 
 export const fetchMessages = () => {
   return dispatch => {
     dispatch({
-      method: "GET",
+      method: 'GET',
       type: 'FETCH_MESSAGES'
     })
     return fetch(apiUrl + 'messages')
@@ -25,7 +25,7 @@ export const createMessage = (message) => {
       type: 'CREATE_MESSAGE'
     })
     return fetch(apiUrl + 'message', {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -48,14 +48,13 @@ export const addMessage = message => ({
   message
 })
 
-export const editMessage = (text, message) => {
-  message.text = text;
+export const editMessage = (message) => {
   return dispatch => {
     dispatch({
       type: 'EDIT_MESSAGE'
     })
     return fetch(apiUrl + 'message', {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -67,20 +66,20 @@ export const editMessage = (text, message) => {
   }
 }
 
-export const deleteMessage = (message) => {
+export const deleteMessage = (id, deleted) => {
   return dispatch => {
     dispatch({
       type: 'DELETE_MESSAGE'
     })
     return fetch(apiUrl + 'message', {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        _id: message._id,
-        deleted: !message.deleted
+        _id: id,
+        deleted: !deleted
       })
     })
       .then(response => response.json())

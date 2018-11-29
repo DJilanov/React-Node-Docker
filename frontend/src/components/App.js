@@ -6,12 +6,12 @@ import FormContainer from '../containers/FormContainer'
 import VisibleMessageList from '../containers/VisibleMessageList'
 
 class App extends React.Component {
-	componentDidMount(){
-  	this.props.fetchMessages()
+  componentDidMount() {
+    this.props.fetchMessages()
   }
 
-	render(){
-	  return (
+  render() {
+    return (
       <div>
         <FormContainer />
         <VisibleMessageList />
