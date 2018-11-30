@@ -9,7 +9,7 @@ const MessageList = ({ messages, toggleEditMode, onSaveClick, deleteMessage }) =
         key={message._id}
         {...message}
         toggleEditMode={() => toggleEditMode(message._id)}
-        onDeleteClick={() => deleteMessage(message)}
+        onDeleteClick={() => deleteMessage(message._id, message.deleted)}
         onSaveClick={(text) => onSaveClick(text, message)}
       />
     )}

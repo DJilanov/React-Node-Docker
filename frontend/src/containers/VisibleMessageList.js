@@ -20,9 +20,17 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  deleteMessage: (message) => dispatch(deleteMessage(message)),
-  toggleEditMode: id => dispatch(toggleEditMode(id)),
-  onSaveClick: (text, message) => dispatch(editMessage(text, message)),
+  deleteMessage: (id, deleted) => dispatch(deleteMessage(id, deleted)),
+  toggleEditMode: (id) => dispatch(toggleEditMode(id)),
+  onSaveClick: (text, message) => dispatch(
+    editMessage(
+      Object.assign(
+        message, {
+          text: text
+        }
+      )
+    )
+  ),
 })
 
 export default connect(

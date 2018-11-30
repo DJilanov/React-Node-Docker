@@ -6,7 +6,7 @@ const messageController = (repository) => {
     const messageData = req.body;
     return repository.create({ modelName, newObject: messageData })
       .then((response) => {
-        if(response.ok) {
+        if(response.ok !== 0) {
           res.status(200).send(response._doc);
         } else {
           res.status(500).send(response);
