@@ -1,18 +1,24 @@
 import * as actions from './index'
 
+const message = {
+  _id: 0,
+  text: 'Use Redux',
+  deleted: false,
+  editMode: false
+};
+
 describe('message actions', () => {
   it('addMessage should create ADD_MESSAGE action', () => {
-    expect(actions.addMessage('Use Redux')).toEqual({
-      type: 'ADD_MESSAGE',
-      id: 0,
-      text: 'Use Redux'
+    expect(actions.addMessage(message)).toEqual({
+      type: 'ADD_MESSAGE', 
+      message: message
     })
   })
 
-  it('editMessage should create EDIT_MESSAGE action', () => {
-    expect(actions.editMessage(0)).toEqual({
-      type: 'EDIT_MESSAGE',
-      id: 0,
+  it('editMessage should create UPDATE_MESSAGE action', () => {
+    expect(actions.updateMessage(message)).toEqual({
+      type: 'UPDATE_MESSAGE',
+      message: message,
     })
   })
 
@@ -26,22 +32,7 @@ describe('message actions', () => {
   it('toggleEditMode should create TOGGLE_EDIT_MESSAGE action', () => {
     expect(actions.toggleEditMode(1)).toEqual({
       type: 'TOGGLE_EDIT_MESSAGE',
-      id: 1
-    })
-  })
-
-  it('onSaveChanges should create SAVE_MESSAGE_CHANGES action', () => {
-    expect(actions.onSaveChanges(1, 'Hey')).toEqual({
-      type: 'SAVE_MESSAGE_CHANGES',
-      id: 1,
-      text: 'Hey'
-    })
-  })
-
-  it('deleteMessage should create DELETE_MESSAGE action', () => {
-    expect(actions.deleteMessage(1)).toEqual({
-      type: 'DELETE_MESSAGE',
-      id: 1
+      _id: 1
     })
   })
 

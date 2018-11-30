@@ -20,8 +20,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  deleteMessage: (id, deleted) => dispatch(deleteMessage(id, deleted)),
   toggleEditMode: (id) => dispatch(toggleEditMode(id)),
+  deleteMessage: (id, deleted) => dispatch(deleteMessage(id, deleted)),
   onSaveClick: (text, message) => dispatch(
     editMessage(
       Object.assign(

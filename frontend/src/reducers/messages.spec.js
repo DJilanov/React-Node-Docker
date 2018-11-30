@@ -1,5 +1,12 @@
 import messages from './messages'
 
+const message = {
+  _id: 1,
+  text: 'Changed Redux',
+  deleted: false,
+  editMode: false
+};
+
 describe('inbox reducer', () => {
   it('should handle initial state', () => {
     expect(
@@ -11,81 +18,10 @@ describe('inbox reducer', () => {
     expect(
       messages([], {
         type: 'ADD_MESSAGE',
-        text: 'Run the tests',
-        id: 0
+        message: message
       })
     ).toEqual([
-      {
-        text: 'Run the tests',
-        deleted: false,
-        editMode: false,
-        id: 0
-      }
-    ])
-
-    expect(
-      messages([
-        {
-          text: 'Run the tests',
-          deleted: false,
-          editMode: false,
-          id: 0
-        }
-      ], {
-        type: 'ADD_MESSAGE',
-        text: 'Use Redux',
-        editMode: false,
-        id: 1
-      })
-    ).toEqual([
-      {
-        text: 'Run the tests',
-        deleted: false,
-        editMode: false,
-        id: 0
-      }, {
-        text: 'Use Redux',
-        deleted: false,
-        editMode: false,
-        id: 1
-      }
-    ])
-
-    expect(
-      messages([
-        {
-          text: 'Run the tests',
-          deleted: false,
-          editMode: false,
-          id: 0
-        }, {
-          text: 'Use Redux',
-          deleted: false,
-          editMode: false,
-          id: 1
-        }
-      ], {
-        type: 'ADD_MESSAGE',
-        text: 'Fix the tests',
-        id: 2
-      })
-    ).toEqual([
-      {
-        text: 'Run the tests',
-        deleted: false,
-        editMode: false,
-        id: 0
-      }, {
-        text: 'Use Redux',
-        deleted: false,
-        editMode: false,
-        id: 1
-      }, {
-        text: 'Fix the tests',
-        deleted: false,
-        editMode: false,
-        id: 2
-      }
+      message
     ])
   })
 
@@ -96,28 +32,28 @@ describe('inbox reducer', () => {
           text: 'Run the tests',
           deleted: false,
           editMode: false,
-          id: 1
+          _id: 1
         }, {
           text: 'Use Redux',
           deleted: false,
           editMode: false,
-          id: 0
+          _id: 0
         }
       ], {
         type: 'DELETE_MESSAGE',
-        id: 1
+        message: message
       })
     ).toEqual([
       {
         text: 'Run the tests',
-        deleted: true,
+        deleted: false,
         editMode: false,
-        id: 1
+        _id: 1
       }, {
         text: 'Use Redux',
         deleted: false,
         editMode: false,
-        id: 0
+        _id: 0
       }
     ])
   })
@@ -129,62 +65,61 @@ describe('inbox reducer', () => {
           text: 'Run the tests',
           deleted: false,
           editMode: false,
-          id: 1
+          _id: 1
         }, {
           text: 'Use Redux',
           deleted: false,
           editMode: false,
-          id: 0
+          _id: 0
         }
       ], {
         type: 'TOGGLE_EDIT_MESSAGE',
-        id: 1,
+        _id: 1,
       })
     ).toEqual([
       {
         text: 'Run the tests',
         deleted: false,
         editMode: true,
-        id: 1
+        _id: 1
       }, {
         text: 'Use Redux',
         deleted: false,
         editMode: false,
-        id: 0
+        _id: 0
       }
     ])
   })
 
-  it('should handle SAVE_MESSAGE_CHANGES', () => {
+  it('should handle UPDATE_MESSAGE', () => {
     expect(
       messages([
         {
           text: 'Run the tests',
           deleted: false,
           editMode: false,
-          id: 1
+          _id: 1
         }, {
           text: 'Use Redux',
           deleted: false,
           editMode: false,
-          id: 0
+          _id: 0
         }
       ], {
-        type: 'SAVE_MESSAGE_CHANGES',
-        id: 1,
-        text: 'Dont use redux'
+        type: 'UPDATE_MESSAGE',
+        message: message
       })
     ).toEqual([
       {
-        text: 'Dont use redux',
+        text: 'Changed Redux',
         deleted: false,
-        editMode: true,
-        id: 1
+        editMode: false,
+        _id: 1
       }, {
         text: 'Use Redux',
         deleted: false,
         editMode: false,
-        id: 0
+        _id: 0
       }
     ])
   })
