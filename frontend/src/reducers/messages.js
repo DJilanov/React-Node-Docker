@@ -23,19 +23,19 @@ const messages = (state = [], action) => {
     case 'TOGGLE_EDIT_MESSAGE':
       return state.map(message =>
         (message._id === action._id)
-          ? {...message, editMode: !message.editMode}
+          ? { ...message, editMode: !message.editMode }
           : message
       )
     case 'UPDATE_MESSAGE':
       return state.map(message =>
         (message._id === action.message._id)
-          ? {...action.message, editMode: false}
+          ? { ...action.message, editMode: false }
           : message
       )
     case 'DELETE_MESSAGE':
       return state.map(message =>
         (message._id === action._id)
-          ? {...action.message, editMode: false}
+          ? { ...action.message, editMode: false }
           : message
       )
     default:

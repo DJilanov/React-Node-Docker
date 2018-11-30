@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Footer from './Footer'
 import { fetchMessages } from '../actions'
@@ -19,6 +20,10 @@ class App extends React.Component {
       </div>
     )
   }
+}
+
+App.propTypes = {
+  fetchMessages: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = (dispatch) => ({
