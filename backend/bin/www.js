@@ -1,5 +1,6 @@
 const debug = require('debug')('server:server');
 const http = require('http');
+const env = require('dotenv').config(); // eslint-disable-line
 const config = require('./config');
 
 (async () => {

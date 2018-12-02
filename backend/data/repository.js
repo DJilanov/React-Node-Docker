@@ -28,7 +28,7 @@ const init = () => {
   }
 
   const remove = request =>
-    db[request.modelName].remove({ _id: request._id })
+    db[request.modelName].deleteOne({ _id: request.record._id })
 
   return {
     create,
