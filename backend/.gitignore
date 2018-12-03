@@ -11,7 +11,6 @@
 /log
 
 # database
-CryptoBeast.db
 *.db
 
 #environment
@@ -29,6 +28,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # db config
-bin/config/db.js
-node_modules/@material-ui/icons/Battery80.js
 node_modules/
